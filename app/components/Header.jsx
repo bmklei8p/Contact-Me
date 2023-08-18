@@ -16,14 +16,7 @@ const Header = () => {
 
   return (
     //  desktop header
-    <div className="header-container bg-headerBackground z-50">
-      <div className="flex flex-row text-white py-4 px-4 justify-between w-full lg:w-[70%]">
-        <Link href="/">
-          <div className="flex flex-row items-center align-middle gap-4">
-            <MdEmail size={30} />
-            <h2 className="text-2xl font-semibold">Contact Me</h2>
-          </div>
-        </Link>
+      <div className="flex flex-row bg-headerBackground text-white py-4 px-4 justify-end md:pr-20">
         <div className="flex flex-row gap-4">
         {isLoggedIn ? (
           <Link href="/dashboard">
@@ -42,7 +35,6 @@ const Header = () => {
         </button>
         </div>
       </div>
-    </div>
   );
 };
 
