@@ -2,7 +2,7 @@ import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import "../styles/global.css";
-import { Providers } from "./components/Providers";
+import DarkProvider  from "./components/DarkProvider";
 
 export const metadata = {
   title: "Contact Me",
@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className="bg-background">
         {/* <main className="z-10 flex flex-col w-full items-center"> */}
-          <Providers>
+          <DarkProvider>
           <div className="flex">
             <Sidebar />
           <div className="flex-1">
@@ -24,7 +24,7 @@ export default function RootLayout({ children }) {
             <Footer />
             </div>
           </div>
-          </Providers>
+          </DarkProvider>
         {/* </main> */}
       </body>
     </html>

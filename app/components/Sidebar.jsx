@@ -16,7 +16,7 @@ const Sidebar = () => {
   },
   {
     title: "API Key",
-    href: '/api-key',
+    href: '/api_key',
     icon: <MdVpnKey />,
   },
   ]

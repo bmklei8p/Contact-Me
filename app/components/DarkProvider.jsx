@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { SessionProvider } from 'next-auth/react'
 
 
-export function Providers({ children, session }) {
+export default function DarkProvider({ children, session }) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => setMounted(true), []);

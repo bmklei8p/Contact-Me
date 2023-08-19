@@ -1,12 +1,9 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
-import User from "@/models/user";
-
 import Link from "next/link";
-import Image from "next/image";
-import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 import { FiSun, FiMoon } from "react-icons/fi";
+import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 
 const Header = () => {
   const { theme, setTheme } = useTheme();
@@ -26,9 +23,9 @@ const Header = () => {
     <div className="flex flex-row bg-headerBackground text-white py-4 px-4 justify-end md:pr-20">
       <div className="flex flex-row gap-4">
         {session?.user ? (
-          <Link href="/dashboard">
-            <div className="text-xl">Dashboard</div>
-          </Link>
+          <button type="button" onClick={() => signOut()} className="min-w-fit">
+            <p className="text-lg">Sign Out</p>
+          </button>
         ) : (
           <>
             {providers &&
@@ -37,9 +34,9 @@ const Header = () => {
                   type="button"
                   key={provider.name}
                   onClick={() => signIn(provider.id)}
-                  className="black_btn"
+                  className="min-w-fit px-4 py-2 text-lg font-medium text-white bg-blue-500 border border-transparent rounded-md hover:bg-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
                 >
-                  Sign In
+                  <p>Sign In</p>
                 </button>
               ))}
           </>
