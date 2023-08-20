@@ -1,25 +1,13 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { RxCopy } from "react-icons/rx";
+import { MdRemoveRedEye } from "react-icons/md";
 
-const DisplayAPI_KEY = () => {
-  const [apiKey, setApiKey] = useState("");
+const DisplayAPI_KEY = ({ API_KEY }) => {
   const [revealApiKey, setRevealApiKey] = useState(false);
 
-  useEffect(() => {
-    const getApiKey = async () => {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/getApiKey`,
-        { next: { cache: "no-store" } }
-      );
-      const data = await res.json();
-      setApiKey(data.API_KEY);
-    };
-    getApiKey();
-  }, []);
-
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(apiKey);
+    navigator.clipboard.writeText(API_KEY);
   };
 
   return (
@@ -28,14 +16,25 @@ const DisplayAPI_KEY = () => {
       <div className="relative">
         <input
           type="text"
-          value={apiKey}
+          value={revealApiKey ? API_KEY : "********************"}
           readOnly={true}
-          onChange={(e) => setInputValue(e.target.value)}
           className="w-1/2 p-2 border-2 border-gray-400 rounded-lg"
         />
-        <button onClick={copyToClipboard} className="absolute top-1 left-[45%]">
-          <RxCopy size={35} />
-        </button>
+        {revealApiKey ? (
+          <button
+            onClick={copyToClipboard}
+            className="absolute top-1 left-[45%]"
+          >
+            <RxCopy size={35} />
+          </button>
+        ) : (
+          <button
+            onClick={() => setRevealApiKey(!revealApiKey)}
+            className="absolute top-1 left-[45%]"
+          >
+            <MdRemoveRedEye size={35} />
+          </button>
+        )}
       </div>
     </div>
   );

@@ -2,13 +2,29 @@
 import { useSession } from "next-auth/react";
 import SignUpNeeded from "./components/SignUpNeeded";
 import GenerateAPI_KEY from "./components/GenerateAPI_KEY";
-import { useUserContext } from "./components/MongoUserProvider";
 import DisplayAPI_KEY from "./components/DisplayAPI_KEY";
+import { useState, useEffect } from "react";
 
 const API_KEY_PAGE = () => {
   const { data: session } = useSession();
-  const mongoUser = useUserContext();
-  console.log({ mongoUser: mongoUser });
+  const [apiKey, setApiKey] = useState();
+
+
+  useEffect(() => {
+    const getApiKey = async () => {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/mongoUser/${session.user.email}`,
+        { next: { cache: "no-store" } }
+      );
+      const data = await res.json();
+      setApiKey(data[0].API_KEY);
+    };
+    if(session) {
+      getApiKey();
+    }
+  }, [session]);
+
+
   return (
     <div className="w-full h-5/6 overflow-hidden flex flex-row">
       <div className="w-full flex justify-center">
@@ -20,7 +36,7 @@ const API_KEY_PAGE = () => {
             true ? (
               <>
                 <GenerateAPI_KEY email={session.user.email} />
-                <DisplayAPI_KEY />
+                <DisplayAPI_KEY API_KEY={apiKey} />
                 <div className="flex flex-col text-left mt-16 w-full">
                   <h3 className="text-2xl">Considerations:</h3>
                   <ul>

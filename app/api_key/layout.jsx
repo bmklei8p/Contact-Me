@@ -1,14 +1,14 @@
-'use client'
+// 'use client'
 
-import MongoUserProvider from "./components/MongoUserProvider"
+// import MongoUserProvider from "./components/MongoUserProvider"
 
 const API_KEY_Layout = ({children}) => {
 
   return (
     <div className="w-full flex justify-center">
-        <MongoUserProvider>
+        {/* <MongoUserProvider> */}
             {children}
-        </MongoUserProvider>
+        {/* </MongoUserProvider> */}
     </div>
   )
 }
