@@ -3,11 +3,12 @@ import { useSession } from "next-auth/react";
 import SignUpNeeded from "./components/SignUpNeeded";
 import GenerateAPI_KEY from "./components/GenerateAPI_KEY";
 import { useUserContext } from "./components/MongoUserProvider";
+import DisplayAPI_KEY from "./components/DisplayAPI_KEY";
 
-const page = () => {
+const API_KEY_PAGE = () => {
   const { data: session } = useSession();
   const mongoUser = useUserContext();
-  console.log({"mongoUser": mongoUser})
+  console.log({ mongoUser: mongoUser });
   return (
     <div className="w-full h-5/6 overflow-hidden flex flex-row">
       <div className="w-full flex justify-center">
@@ -19,7 +20,20 @@ const page = () => {
             true ? (
               <>
                 <GenerateAPI_KEY email={session.user.email} />
-                <p>already have an api key</p>
+                <DisplayAPI_KEY />
+                <div className="flex flex-col text-left mt-16 w-full">
+                  <h3 className="text-2xl">Considerations:</h3>
+                  <ul>
+                    <li className="text-lg">
+                      Your API Key is unique to you and should not be shared
+                      with anyone.
+                    </li>
+                    <li className="text-lg">
+                      Your API Key is used to authenticate your requests to the
+                      API.
+                    </li>
+                  </ul>
+                </div>
               </>
             ) : (
               <GenerateAPI_KEY email={session.user.email} />
@@ -33,4 +47,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default API_KEY_PAGE;

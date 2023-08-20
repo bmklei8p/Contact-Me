@@ -27,11 +27,11 @@ const GenerateAPI_KEY = ({email}) => {
     navigator.clipboard.writeText(apiKey);
   };
 
-  
+
   return (
     <div className="flex flex-col text-left justify-start w-full">
     <div className="flex gap-x-4 mt-16 mb-4 align-middle items-center">
-      <h2 className="text-3xl">Generate an API Key:</h2>
+      <h2 className="text-3xl">Generate a new API Key:</h2>
       <button
         onClick={(e) => generateApiKey(e)}
         className="text-2xl min-w-fit px-4 py-2 font-medium text-white bg-blue-500 border border-transparent rounded-md hover:bg-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
@@ -53,19 +53,6 @@ const GenerateAPI_KEY = ({email}) => {
       >
         <RxCopy size={35} />
       </button>
-    </div>
-    <div className="flex flex-col mt-16">
-      <h3 className="text-2xl">Considerations:</h3>
-      <ul>
-        <li className="text-lg">
-          Your API Key is unique to you and should not be shared
-          with anyone.
-        </li>
-        <li className="text-lg">
-          Your API Key is used to authenticate your requests to the
-          API.
-        </li>
-      </ul>
     </div>
   </div>
   )

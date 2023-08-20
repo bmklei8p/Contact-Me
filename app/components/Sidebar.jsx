@@ -30,7 +30,7 @@ const Sidebar = () => {
           </div>
         </Link>
           {navLinks.map((link) => (
-            <Link className="w-full" key={link.href} href={link.href} onClick={() => setShowSideBar(false)}>
+            <Link className="w-full" key={link.href} href={link.href}>
               <div className="flex flex-row items-center text-center p-1 hover:bg-white hover:text-black rounded-lg px-2">
                 <div className="pr-2">
                   {link.icon && React.cloneElement(link.icon, { size: 25 })}
