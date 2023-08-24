@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
           <div className="flex-1">
             <Header />
             {children}
-            <Footer />
+            {/* <Footer /> */}
             </div>
           </div>
           </DarkProvider>

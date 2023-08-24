@@ -30,8 +30,8 @@ const EnvPage = () => {
   const codeBlock = true;
 
   return (
-    <div className="w-full h-full overflow-y-scroll mt-6">
-      <div className="flex flex-row gap-x-4 mb-2 border-b-2 px-2 py-1">
+    <div className="w-full h-full mt-6">
+            <div className="flex flex-row gap-x-4 mb-2 border-2 px-2 py-1">
         {tabs.map((tab, i) => {
           return (
             <button
