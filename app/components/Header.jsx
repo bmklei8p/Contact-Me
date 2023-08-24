@@ -4,6 +4,7 @@ import { useTheme } from "next-themes";
 import Link from "next/link";
 import { FiSun, FiMoon } from "react-icons/fi";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
+import { MdEmail } from "react-icons/md";
 
 const Header = () => {
   const { theme, setTheme } = useTheme();
@@ -20,7 +21,15 @@ const Header = () => {
 
   return (
     //  desktop header
-    <div className="flex flex-row bg-headerBackground text-white py-4 px-4 justify-end md:pr-20">
+    <div className="flex flex-row bg-headerBackground text-white py-4 px-4 justify-between md:px-20">
+      <div>
+        <Link href="/">
+          <div className="flex flex-row items-center align-middle gap-2">
+            <MdEmail size={30} />
+            <h2 className="text-2xl font-semibold">Contact Me</h2>
+            </div>
+          </Link>
+      </div>
       <div className="flex flex-row gap-4">
         {session?.user ? (
           <button type="button" onClick={() => signOut()} className="min-w-fit">

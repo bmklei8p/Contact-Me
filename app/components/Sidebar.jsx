@@ -1,14 +1,15 @@
 'use client'
-// import { useState } from "react"
+import { useState } from "react"
 import Link from "next/link"
 import React from "react"
 import { BiSolidBarChartAlt2, BiSolidCalendar } from "react-icons/bi";
 import { MdEmail } from "react-icons/md";
-
 import { HiDocumentText } from "react-icons/hi";
 import { MdVpnKey } from "react-icons/md";
 
 const Sidebar = () => {
+  const [sidebarOpen, setSidebarOpen] = useState(false)
+  
   const navLinks = [{
     title: "Documentation",
     href: '/docs',
@@ -21,7 +22,8 @@ const Sidebar = () => {
   },
   ]
   return (
-      // <div className="h-screen p-4 bg-headerBackground z-20">
+    <>
+        {sidebarOpen && (
         <div className="h-screen w-[200px] p-4 bg-headerBackground flex flex-col text-white text-lg text-left gap-2 items-start">
           <Link className="pb-20"  href="/">
           <div className="flex flex-row items-center align-middle gap-2">
@@ -41,7 +43,8 @@ const Sidebar = () => {
             </Link>
           ))}
         </div>
-      // </div>
+    )}
+    </>
   )
 }
 
