@@ -22,7 +22,7 @@ const Header = () => {
   return (
     //  desktop header
     <div className="flex flex-row bg-headerBackground text-white py-4 px-4 justify-between md:px-20">
-      <div>
+      <div className="flex items-center">
         <Link href="/">
           <div className="flex flex-row items-center align-middle gap-2">
             <MdEmail size={30} />
