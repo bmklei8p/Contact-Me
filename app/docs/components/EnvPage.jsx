@@ -23,7 +23,7 @@ const EnvPage = () => {
   const codeBlock = true;
 
   return (
-    <div className="w-full h-full overflow-y-scroll mt-6">
+    <div className="w-full h-full mt-6">
             <div className="flex flex-row gap-x-4 mb-2 border-2 px-2 py-1">
         {tabs.map((tab, i) => {
           return <button className={tabSelected === i ? 'text-blue-500 border-r-2 border-white pr-4' : 'text-gray-100 border-r-2 border-white pr-4'}  key={i} onClick={() => setTabSelected(i)}>{tab.name}</button>;
