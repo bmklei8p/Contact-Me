@@ -1,5 +1,6 @@
 import React from 'react'
 import EnvPage from './components/EnvPage'
+import ReqCodeBlock from './components/ReqCodeBlock'
 
 const Docs = () => {
   return (
@@ -11,7 +12,7 @@ const Docs = () => {
         </div>
       </div>
       <div className='basis-1/2  bg-blue-500'>
-        Code Example
+        <ReqCodeBlock />
       </div>
     </div>
   )
