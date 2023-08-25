@@ -33,7 +33,7 @@ const BannerContact = () => {
 
   return (
     <>
-      <form className="contct-form" onSubmit={handleSubmit(onSubmit)}>
+      <form className="bg-white shadow-md" onSubmit={handleSubmit(onSubmit)}>
         <div className="row">
           <div className="col-md-6">
             <div className="form-group">
