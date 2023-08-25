@@ -3,7 +3,6 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import axios from "axios";
-import { set } from "mongoose";
 
 const BannerContact = () => {
   const {
@@ -41,8 +40,11 @@ const BannerContact = () => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="h-[100vh] w-full min-w-fit flex flex-col items-center justify-center">
         <div className="w-[90%] bg-gray-100 py-10 flex flex-wrap justify-center relative">
-          <h1 className="text-3xl mb-3 absolute left-12">
-            <strong>Contact</strong> me
+          <h1 className="text-3xl mb-4 absolute left-12">
+            <div className="flex">
+              {/* <strong><span className="border-b-2 border-black">C</span>ontact</strong> me */}
+              <span><strong className="border-b-2 border-black">C</strong><strong>ontact</strong> me</span>
+            </div>
           </h1>
           <div className="w-[90%] bg-white py-6 px-6 mt-12 shadow-2xl overflow-hidden ">
             <div className="flex flex-col gap-y-8">
@@ -61,13 +63,13 @@ const BannerContact = () => {
                 <input
                   className="bg-white border-2 border-gray-400 px-4 py-1 "
                   type="text"
-                  placeholder="name"
+                  placeholder="Name"
                   {...register("senderName", { required: true })}
                 />
                 <input
                   className="bg-white border-2 border-gray-400 px-4 py-1 "
                   type="text"
-                  placeholder="email"
+                  placeholder="Sender email"
                   {...register("senderEmail", { required: true })}
                 />
               </span>
@@ -75,7 +77,7 @@ const BannerContact = () => {
                 <input
                   className="bg-white border-2 border-gray-400 px-4 py-1 "
                   type="text"
-                  placeholder="subject"
+                  placeholder="Subject"
                   {...register("subject", { required: true })}
                 />
               </div>
@@ -83,7 +85,7 @@ const BannerContact = () => {
                 <input
                   className="bg-contentBackground w-full h-24 border-2 border-gray-400 px-4"
                   type="text"
-                  placeholder="message"
+                  placeholder="Message"
                   {...register("comment", { required: true })}
                 />
               </div>
