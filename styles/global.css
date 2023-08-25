@@ -6,12 +6,17 @@
 
 @layer base {
   :root {
-    --background: 220 14% 96%;
+    /* --background: 220 14% 96%; */
+    /* --background: 39.2, 100%, 85.3%; */
+    --background: 38 65% 93%;
     --contentBackground: 0 0% 100%;
-    --headerBackground: 197 88% 36%;
+    /* --headerBackground: 197 88% 36%; */
+    --headerBackground: 212 39% 47%;
     --borderColor: 0 0% 0%;
     --altGray: 220 14% 96%;
     --altGrayDarker: 220 14% 90%;
+    --contrast: 0 0% 100%;
+    --offset: 210 20% 98%;
   }
   .dark {
     --background: 200 6.7% 17.6%;
@@ -20,6 +25,8 @@
     --borderColor: 0 0% 100%;
     --altGray: 215.3 25% 26.7%;
     --altGrayDarker: 217.2 32.6% 17.5%;
+    --contrast: 200 6.7% 17.6%;
+    --offset: 60 3.23% 12.16%;
   }
 }
 

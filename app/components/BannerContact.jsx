@@ -1,6 +1,7 @@
-'use client'
+"use client";
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 import axios from "axios";
 
 const BannerContact = () => {
@@ -9,116 +10,136 @@ const BannerContact = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const [emailSentSuccessfully, setEmailSentSuccessfully] = useState(false);
+  const [emailSentFailed, setEmailSentFailed] = useState(false);
 
   const onSubmit = async (data, e) => {
     e.target.reset();
-
+    data.API_KEY = process.env.NEXT_PUBLIC_EMAIL_API_KEY;
     try {
-      // const response = await axios.post("http://localhost:8000/submit-form", data);
-      // backend prod
-      console.log(data)
-      const response = await axios.post("https://portfolio-email-service.azurewebsites.net/submit-form", data);
+      const response = await axios.post(
+        "https://portfolio-email-service.azurewebsites.net/submit-form",
+        data
+      );
       if (response.status === 200) {
-        console.log('Email sent successfully');
-        // Optionally, you can show a success message to the user
+        console.log("Email sent successfully");
+        setEmailSentSuccessfully(true);
       } else {
-        console.error('Failed to send email');
-        // Optionally, you can show an error message to the user
+        console.error("Failed to send email");
+        setEmailSentFailed(true);
       }
     } catch (error) {
-      console.error('An error occurred while sending the email', error);
-      // Optionally, you can show an error message to the user
+      console.error("An error occurred while sending the email", error);
+      setEmailSentFailed(true);
     }
   };
 
   return (
     <>
-      <form className="bg-white shadow-md" onSubmit={handleSubmit(onSubmit)}>
-        <div className="row">
-          <div className="col-md-6">
-            <div className="form-group">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Full name"
-                {...register("name", { required: true })}
-              />
-              <label className="form-label">Name</label>
-              {errors.name && errors.name.type === "required" && (
-                <span className="invalid-feedback">Name is required</span>
-              )}
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className="h-[100vh] w-full min-w-fit flex flex-col items-center justify-center">
+          <div className="w-[90%] bg-offset py-10 flex flex-wrap justify-center relative">
+            {emailSentSuccessfully && (
+              <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center">
+                <div className="bg-background p-8 rounded-md">
+                  <h1 className="text-2xl font-bold mb-4 text-center">
+                    Email sent successfully
+                  </h1>
+                  <p className="text-lg mb-8">
+                    Thank you for contacting me. I will get back to you as soon
+                    as possible.
+                  </p>
+                  <button
+                    className="px-4 py-2 mt-4 flex justify-center w-full text-lg font-medium text-white bg-blue-500 border border-transparent rounded-md hover:bg-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+                    onClick={() => setEmailSentSuccessfully(false)}
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            )}
+            {emailSentFailed && (
+              <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center">
+                <div className="bg-background p-8 rounded-md">
+                  <h1 className="text-2xl font-bold mb-4">
+                    Email sending failed
+                  </h1>
+                  <p className="text-lg">
+                    Please try again. If you continue to see this message,
+                    please contact me via linkedin.
+                  </p>
+                  <button
+                    className="px-4 py-2 mt-4 text-lg font-medium text-white bg-blue-500 border border-transparent rounded-md hover:bg-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+                    onClick={() => setEmailSentSuccessfully(false)}
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            )}
+            <h1 className="text-3xl mb-4 absolute left-12">
+              <div className="flex">
+                {/* <strong><span className="border-b-2 border-black">C</span>ontact</strong> me */}
+                <span>
+                  <strong className="border-b-2 border-black">C</strong>
+                  <strong>ontact</strong> me
+                </span>
+              </div>
+            </h1>
+            <div className="w-[90%] bg-contrast py-6 px-6 mt-12 shadow-2xl overflow-hidden ">
+              <div className="flex flex-col gap-y-8">
+                <div>
+                  <input
+                    type="text"
+                    className="bg-contrast border-2 border-gray-400 px-4 py-1 "
+                    placeholder="Reciever email"
+                    {...register("recieverEmail", { required: true })}
+                  />
+                  {errors.name && errors.name.type === "required" && (
+                    <span className="invalid-feedback">Name is required</span>
+                  )}
+                </div>
+                <span className="flex flex-col gap-y-8 gap-x-8 xl:flex-row">
+                  <input
+                    className="bg-contrast border-2 border-gray-400 px-4 py-1 "
+                    type="text"
+                    placeholder="Name"
+                    {...register("senderName", { required: true })}
+                  />
+                  <input
+                    className="bg-contrast border-2 border-gray-400 px-4 py-1 "
+                    type="text"
+                    placeholder="Sender email"
+                    {...register("senderEmail", { required: true })}
+                  />
+                </span>
+                <div>
+                  <input
+                    className="bg-contrast border-2 border-gray-400 px-4 py-1 "
+                    type="text"
+                    placeholder="Subject"
+                    {...register("subject", { required: true })}
+                  />
+                </div>
+                <div className="">
+                  <input
+                    className="bg-contrast w-full h-24 border-2 border-gray-400 px-4"
+                    type="text"
+                    placeholder="Message"
+                    {...register("comment", { required: true })}
+                  />
+                </div>
+                <div>
+                  <button className="min-w-fit px-4 py-2 text-lg font-medium text-white bg-blue-500 border border-transparent rounded-md hover:bg-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500">
+                    Send your message
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
-          {/* End .col-6 */}
-
-          <div className="col-md-6">
-            <div className="form-group">
-              <input
-                type="email"
-                className="form-control"
-                placeholder="Email address"
-                {...register(
-                  "email",
-                  {
-                    required: "Email is Required",
-                    pattern: {
-                      value: /\S+@\S+\.\S+/,
-                      message: "Entered value does not match email format",
-                    },
-                  },
-                  { required: true }
-                )}
-              />
-              <label className="form-label">Email</label>
-              {errors.email && (
-                <span className="invalid-feedback">{errors.email.message}</span>
-              )}
-            </div>
-          </div>
-          {/* End .col-6 */}
-
-          <div className="col-12">
-            <div className="form-group">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Subject"
-                {...register("subject", { required: true })}
-              />
-              <label className="form-label">Subject</label>
-              {errors.subject && (
-                <span className="invalid-feedback">Subject is required.</span>
-              )}
-            </div>
-          </div>
-          {/* End .col-12 */}
-
-          <div className="col-12">
-            <div className="form-group">
-              <textarea
-                rows="4"
-                className="form-control"
-                placeholder="Type comment"
-                {...register("comment", { required: true })}
-              ></textarea>
-              <label className="form-label">Comment</label>
-              {errors.comment && (
-                <span className="invalid-feedback">Comment is required.</span>
-              )}
-            </div>
-          </div>
-          {/* End .col-12 */}
-
-          <div className="col-12">
-            <div className="btn-bar">
-              <button className="px-btn px-btn-theme">Send your message</button>
-            </div>
-          </div>
-          {/* End .col-12 */}
         </div>
       </form>
     </>
   );
 };
-
 export default BannerContact;

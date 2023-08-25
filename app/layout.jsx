@@ -16,14 +16,11 @@ export default function RootLayout({ children }) {
       <body className="bg-background">
         {/* <main className="z-10 flex flex-col w-full items-center"> */}
           <DarkProvider>
-          <div className="flex">
-            <Sidebar />
           <div className="flex-1">
             <Header />
             {children}
             {/* <Footer /> */}
             </div>
-          </div>
           </DarkProvider>
         {/* </main> */}
       </body>
