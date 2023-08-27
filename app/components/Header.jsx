@@ -6,13 +6,28 @@ import { FiSun, FiMoon } from "react-icons/fi";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 import { MdEmail } from "react-icons/md";
 import { RiMenuFill } from "react-icons/ri";
-import Sidebar from "./Sidebar";
+import { HiDocumentText } from "react-icons/hi";
+import { MdVpnKey } from "react-icons/md";
+import React from "react";
 
 const Header = () => {
   const { theme, setTheme } = useTheme();
   const { data: session } = useSession();
   const [providers, setProviders] = useState(null);
-  const [toggleDropDown, setToggleDropDown] = useState(false);
+  const [showSideBar, setShowSideBar] = useState(false)
+
+  const navLinks = [
+    {
+      title: "Documentation",
+      href: "/docs",
+      icon: <HiDocumentText />,
+    },
+    {
+      title: "API Key",
+      href: "/api_key",
+      icon: <MdVpnKey />,
+    },
+  ];
 
   useEffect(() => {
     (async () => {
@@ -65,12 +80,27 @@ const Header = () => {
           <button>
             <RiMenuFill
               size={30}
-              onClick={() => setToggleDropDown((prev) => !prev)}
+              onClick={() => setShowSideBar((prev) => !prev)}
             />
           </button>
         </div>
       </div>
-      {toggleDropDown && <Sidebar />}
+      {showSideBar && 
+          <div className="h-screen absolute w-[200px] z-50 p-4 bg-headerBackground flex flex-col text-white text-lg text-left gap-2 items-start">
+          {navLinks.map((link) => (
+            <Link className="w-full" key={link.href} href={link.href} onClick={() => setShowSideBar(false)}>
+              <div className="flex flex-row items-center text-center p-1 hover:bg-white hover:text-black rounded-lg px-2">
+                <div className="pr-2">
+                  {link.icon && React.cloneElement(link.icon, { size: 25 })}
+                  {link.img && (
+                    <Image src={link.img} alt="f1-logo" width={25} height={25} />
+                  )}
+                </div>
+                {link.title}
+              </div>
+            </Link>
+          ))}
+        </div>}
     </>
   );
 };
