@@ -37,7 +37,7 @@ const BannerContact = () => {
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="h-[100vh] w-full min-w-fit flex flex-col items-center justify-center">
+        <div className="mt-20 md:mt-0 md:h-[100vh] w-full min-w-fit flex flex-col items-center justify-center">
           <div className="w-[90%] bg-offset py-10 flex flex-wrap justify-center relative">
             {emailSentSuccessfully && (
               <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center">

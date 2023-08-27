@@ -7,6 +7,20 @@ module.exports = {
   ],
   theme: {
     extend: {
+      keyframes: {
+        emailFlyingAnimation : {
+         "0%": {
+            transform: "rotate(0deg) translateX(-200px) translateY(200px) rotate(0deg)"
+          },
+          "100%": {
+            transform: "rotate(0deg) translateX(500px) translateY(0px) rotate(0deg)"
+          }
+        },
+      },
+      animation: {
+        'ping-slow': 'ping 2s cubic-bezier(0, 0, 0.2, 1) infinite',
+        'email-flying-animation': 'emailFlyingAnimation 1s ease-in-out',
+      },
       colors: {
         background: "hsl(var(--background))",
         contentBackground: "hsl(var(--contentBackground))",
