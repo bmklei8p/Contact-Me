@@ -18,7 +18,7 @@ const DisplayAPI_KEY = ({ API_KEY }) => {
           type="text"
           value={revealApiKey ? API_KEY : "********************"}
           readOnly={true}
-          className="w-1/2 p-2 border-2 border-gray-400 rounded-lg"
+          className="w-full md:w-3/4 p-2 border-2 border-gray-400 rounded-lg text-xl min-w-fit"
         />
         {revealApiKey ? (
           <button

@@ -45,7 +45,7 @@ const GenerateAPI_KEY = ({email}) => {
         value={apiKey}
         readOnly={true}
         onChange={(e) => setInputValue(e.target.value)}
-        className="w-1/2 p-2 border-2 border-gray-400 rounded-lg"
+        className="w-1/2 p-2 text-xl border-2 border-gray-400 rounded-lg"
       />
       <button
         onClick={copyToClipboard}

@@ -4,11 +4,12 @@ import SignUpNeeded from "./components/SignUpNeeded";
 import GenerateAPI_KEY from "./components/GenerateAPI_KEY";
 import DisplayAPI_KEY from "./components/DisplayAPI_KEY";
 import { useState, useEffect } from "react";
+import Image from "next/image";
+import stockKey from "../../public/stock_key.png";
 
 const API_KEY_PAGE = () => {
   const { data: session } = useSession();
   const [apiKey, setApiKey] = useState();
-
 
   useEffect(() => {
     const getApiKey = async () => {
@@ -19,14 +20,22 @@ const API_KEY_PAGE = () => {
       const data = await res.json();
       setApiKey(data[0].API_KEY);
     };
-    if(session) {
+    if (session) {
       getApiKey();
     }
   }, [session]);
 
-
   return (
-    <div className="w-full h-5/6 overflow-hidden flex flex-row">
+    <div className="w-full h-5/6 overflow-hidden flex flex-col-reverse  md:flex-row-reverse">
+      <div className="w-full">
+        <Image
+          src={stockKey}
+          alt="key"
+          width={1000}
+          height={1000}
+          className="-z-10"
+        />
+      </div>
       <div className="w-full flex justify-center">
         <div className="w-[70%] flex flex-col items-center">
           <h1 className="text-5xl pt-20 font-bold pb-5 border-b-2 border-gray-400 w-full text-center">
