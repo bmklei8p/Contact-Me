@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import axios from "axios";
@@ -21,7 +20,7 @@ const BannerContact = () => {
         "https://portfolio-email-service.azurewebsites.net/submit-form",
         data
       );
-      if (response.status === 200) {
+      if (response.status === 201) {
         console.log("Email sent successfully");
         setEmailSentSuccessfully(true);
       } else {

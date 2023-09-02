@@ -10,7 +10,7 @@ const EnvPage = ({tabSelected, tabs}) => {
   const codeBlock = true;
 
   return (
-    <div className="w-full h-full mt-4">
+    <div className="w-full mt-4">
       <h2 className="text-xl font-bold mt-8">.env file</h2>
       <div>
         <CodeBlock
