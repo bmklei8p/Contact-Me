@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
 import Link from "next/link";
 import { FiSun, FiMoon } from "react-icons/fi";
@@ -15,6 +15,7 @@ const Header = () => {
   const { data: session } = useSession();
   const [providers, setProviders] = useState(null);
   const [showSideBar, setShowSideBar] = useState(false);
+  const [toggleSidebar, setToggleSidebar] = useState(false);
 
   const navLinks = [
     {
