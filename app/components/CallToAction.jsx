@@ -28,7 +28,20 @@ const CallToAction = () => {
           </div>
         </div>
         <div className="w-full flex justify-center xl:justify-end">
-          <div className="text-2xl md:text-3xl mt-32 md:mt-44 flex flex-col text-center items-center">
+        <div className="text-2xl md:text-3xl mt-32 md:mt-44 flex flex-col lg:flex-row md:gap-x-8 text-center">
+            <div>
+              <h3>
+                <strong>100% free</strong> email
+              </h3>
+              <h3>Software as a Service</h3>
+            </div>
+            {/* <div className="flex justify-center mt-4 items-center">
+              <Image src={free} alt="free" height={75} width={75} className="fill-blue-500" />
+            </div> */}
+          </div>
+        </div>
+        <div className="w-full flex justify-center xl:justify-start">
+        <div className="text-2xl md:text-3xl mt-32 md:mt-44 flex flex-col text-center items-center">
             <h2>
               Aquire your <strong>API Key</strong>
             </h2>
@@ -36,19 +49,6 @@ const CallToAction = () => {
             <button className="min-w-fit mt-6 px-4 py-2 text-lg font-medium text-white bg-blue-500 border border-transparent rounded-md hover:bg-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500">
               Get started
             </button>
-          </div>
-        </div>
-        <div className="w-full flex justify-center xl:justify-start">
-          <div className="text-2xl md:text-3xl mt-32 md:mt-44 flex flex-col lg:flex-row md:gap-x-8 text-center">
-            <div>
-              <h3>
-                <strong>100% free</strong> email
-              </h3>
-              <h3>Software as a Service</h3>
-            </div>
-            <div className="flex justify-center mt-4">
-              <Image src={free} alt="free" height={75} width={75} className="fill-blue-500" />
-            </div>
           </div>
         </div>
       </div>
