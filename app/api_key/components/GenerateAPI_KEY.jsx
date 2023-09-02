@@ -31,25 +31,25 @@ const GenerateAPI_KEY = ({email}) => {
   return (
     <div className="flex flex-col text-left justify-start w-full">
     <div className="flex gap-x-4 mt-16 mb-4 align-middle items-center">
-      <h2 className="text-3xl">Generate a new API Key:</h2>
+      <h2 className="text-xl lg:text-2xl">Generate a new API Key:</h2>
       <button
         onClick={(e) => generateApiKey(e)}
-        className="text-2xl min-w-fit px-4 py-2 font-medium text-white bg-blue-500 border border-transparent rounded-md hover:bg-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+        className="text-xl lg:text-2xl min-w-fit px-4 py-2 font-medium text-white bg-blue-500 border border-transparent rounded-md hover:bg-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
       >
         Generate
       </button>
     </div>
-    <div className="relative">
+    <div className="flex flex-row gap-x-2">
       <input
         type="text"
         value={apiKey}
         readOnly={true}
         onChange={(e) => setInputValue(e.target.value)}
-        className="w-1/2 p-2 border-2 border-gray-400 rounded-lg"
+        className="w-full lg:w-3/4 p-2 text-xl border-2 border-gray-400 rounded-lg"
       />
       <button
         onClick={copyToClipboard}
-        className="absolute top-1 left-[45%]"
+        className=""
       >
         <RxCopy size={35} />
       </button>
