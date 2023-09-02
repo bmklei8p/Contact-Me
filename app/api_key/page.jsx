@@ -27,7 +27,7 @@ const API_KEY_PAGE = () => {
 
   return (
     <div className="w-full h-5/6 overflow-hidden flex flex-col-reverse  md:flex-row-reverse">
-      <div className="w-full">
+      <div className="w-full pt-14 md:pt-0">
         <Image
           src={stockKey}
           alt="key"
@@ -37,8 +37,8 @@ const API_KEY_PAGE = () => {
         />
       </div>
       <div className="w-full flex justify-center">
-        <div className="w-[70%] flex flex-col items-center">
-          <h1 className="text-5xl pt-20 font-bold pb-5 border-b-2 border-gray-400 w-full text-center">
+        <div className="w-full px-8 lg:px-0 lg:w-[70%] flex flex-col items-center">
+          <h1 className="text-4xl pt-10 md:pt-20 md:text-5xl font-bold pb-5 border-b-2 border-gray-400 w-full text-center">
             API Key
           </h1>
           {session?.user ? (
@@ -46,7 +46,7 @@ const API_KEY_PAGE = () => {
               <>
                 <GenerateAPI_KEY email={session.user.email} />
                 <DisplayAPI_KEY API_KEY={apiKey} />
-                <div className="flex flex-col text-left mt-16 w-full">
+                {/* <div className="flex flex-col text-left mt-16 w-full">
                   <h3 className="text-2xl">Considerations:</h3>
                   <ul>
                     <li className="text-lg">
@@ -58,7 +58,7 @@ const API_KEY_PAGE = () => {
                       API.
                     </li>
                   </ul>
-                </div>
+                </div> */}
               </>
             ) : (
               <GenerateAPI_KEY email={session.user.email} />
