@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useTheme } from "next-themes";
 import Link from "next/link";
 import { FiSun, FiMoon } from "react-icons/fi";
@@ -12,7 +12,11 @@ const Header = () => {
   const { theme, setTheme } = useTheme();
   const { data: session } = useSession();
   const [providers, setProviders] = useState(null);
-  const [toggleDropDown, setToggleDropDown] = useState(false);
+  const [toggleSidebar, setToggleSidebar] = useState(false);
+
+  const sidebarRef = useRef(null);
+
+
 
   useEffect(() => {
     (async () => {
@@ -20,6 +24,22 @@ const Header = () => {
       setProviders(res);
     })();
   }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+        setToggleSidebar(false);
+      }
+    };
+
+    if (toggleSidebar) {
+      document.addEventListener('click', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [toggleSidebar]);
 
   return (
     <>
@@ -65,12 +85,12 @@ const Header = () => {
           <button>
             <RiMenuFill
               size={30}
-              onClick={() => setToggleDropDown((prev) => !prev)}
+              onClick={() => setToggleSidebar((prev) => !prev)}
             />
           </button>
         </div>
       </div>
-      {toggleDropDown && <Sidebar />}
+      {toggleSidebar && <Sidebar ref={sidebarRef} />}
     </>
   );
 };
