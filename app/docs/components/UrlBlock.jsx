@@ -39,17 +39,19 @@ const UrlBlock = () => {
         </div>
       </div>
       <div className="mt-2 border-blue-500 border-2 px-2 py-2 rounded-lg">
-        <p>
-          * Your recieverEmail must match the email that was used to sign up for
-          Contact Me
-        </p>
-        <p>
-          * Your API_KEY can be found under{" "}
-          <Link className="text-blue-500" href={"/api_key"}>
-            API Key
-          </Link>
-        </p>
-        <p>* All other fields are inputted by your portfolio users</p>
+        <ul className="list-disc px-3">
+          <li>
+            Your recieverEmail must match the email that was used to sign up for
+            Contact Me
+          </li>
+          <li>
+            Your API_KEY can be found under{" "}
+            <Link className="text-blue-500" href={"/api_key"}>
+              API Key
+            </Link>
+          </li>
+          <li>All other fields are inputted by your portfolio users</li>
+        </ul>
       </div>
       <h2 className="text-xl font-bold text-left mt-8">Response information</h2>
       <div className="w-full rounded-lg bg-gray-50 text-gray-900 mt-2 py-2 px-4 text-left flex flex-col gap-y-2">

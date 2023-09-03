@@ -20,9 +20,13 @@ const Docs = () => {
       code: "VUE_APP_EMAIL_API_KEY=Your API Key Here",
     },
     {
-      name: "ES6",
+      name: "Javascript",
       code: "code",
     },
+    {
+      name: "Swift",
+      code: "code",
+    }
   ];
 
 

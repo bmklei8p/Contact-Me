@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import { CodeBlock } from "react-code-blocks";
-import { useState } from "react";
 
 const EnvPage = ({tabSelected, tabs}) => {
   const themes = "dracula";
