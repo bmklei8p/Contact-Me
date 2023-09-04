@@ -68,9 +68,12 @@ const UrlBlock = () => {
         </p>
       </div>
       <div className="mt-2 border-blue-500 border-2 px-2 py-2 rounded-lg">
-        <span>* If you recieve a 500 error not resolved by proper formatting and all information correctly in body please open an issue at:
-        <p className="text-sm md:text-md text-blue-500"><Link href="https://github.com/bmklei8p/email_service/issues">https://github.com/bmklei8p/email_service/issues</Link></p>
-        </span>
+        <ul className="list-disc px-3">
+          <li>
+            If you recieve a 500 error not resolved by proper formatting and all body fields correctly in filled out please open an issue:
+          </li>
+        </ul>
+        <p className="text-sm pl-3 md:text-md text-blue-500"><Link href="https://github.com/bmklei8p/email_service/issues">https://github.com/bmklei8p/email_service/issues</Link></p>
       </div>
     </div>
   );

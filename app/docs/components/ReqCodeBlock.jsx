@@ -353,6 +353,75 @@ function ContactForm() {
         },
       ],
     },
+    {
+      name: "Angular",
+      codeblocks: [
+        {name: "contact-form.component.html", code: `<div>
+        <form (ngSubmit)="submitForm()">
+          <div>
+            <input type="text" placeholder="Receiver email" [(ngModel)]="formData.recieverEmail" required />
+          </div>
+          <div>
+            <input type="text" placeholder="Name" [(ngModel)]="formData.senderName" required />
+          </div>
+          <div>
+            <input type="text" placeholder="Sender email" [(ngModel)]="formData.senderEmail" required />
+          </div>
+          <div>
+            <input type="text" placeholder="Subject" [(ngModel)]="formData.subject" required />
+          </div>
+          <div>
+            <input type="text" placeholder="Message" [(ngModel)]="formData.comment" required />
+          </div>
+          <div>
+            <button type="submit">Send your message</button>
+          </div>
+        </form>
+</div>`},
+      {name: "contact-form.component.ts", code: `import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+@Component({
+  selector: 'app-contact-form',
+  templateUrl: './contact-form.component.html',
+  styleUrls: ['./contact-form.component.css'],
+})
+export class ContactFormComponent {
+  formData: any = {
+    API_KEY: 'YourAPIKeyHere', // Replace with your API key
+    recieverEmail: 'Your Email Address', // Replace with your email address
+    senderName: '',
+    senderEmail: '',
+    subject: '',
+    comment: '',
+  };
+
+  constructor(private http: HttpClient) {}
+
+  submitForm() {
+    this.http
+      .post('https://portfolio-email-service.azurewebsites.net/submit-form', this.formData)
+      .subscribe(
+        (response) => {
+          console.log('Form submitted successfully:', response);
+          this.clearForm();
+        },
+        (error) => {
+          console.error('Error submitting form:', error);
+        }
+      );
+  }
+
+  clearForm() {
+    this.formData.recieverEmail = 'Your Email Address'; // Replace with your email address
+    this.formData.senderName = '';
+    this.formData.senderEmail = '';
+    this.formData.subject = '';
+    this.formData.comment = '';
+  }
+};`},
+      ],
+    }
   ];
 
   const themes = "dracula";
