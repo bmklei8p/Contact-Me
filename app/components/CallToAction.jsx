@@ -1,6 +1,7 @@
-import EmailAnimation from "./EmailAnimation";
-import free from "../../public/no_resel.svg";
-import Image from "next/image";
+// import EmailAnimation from "./EmailAnimation";
+// import free from "../../public/no_resel.svg";
+// import Image from "next/image";
+import Link from "next/link";
 import { MdOutlineMarkEmailUnread } from "react-icons/md";
 
 const CallToAction = () => {
@@ -24,7 +25,7 @@ const CallToAction = () => {
           </div>
           <div className="flex justify-center mt-4 relative">
             <MdOutlineMarkEmailUnread className="text-blue-500" size={60}/>
-            <EmailAnimation />
+            {/* <EmailAnimation /> */}
           </div>
         </div>
         <div className="w-full flex justify-center xl:justify-end">
@@ -46,9 +47,11 @@ const CallToAction = () => {
               Aquire your <strong>API Key</strong>
             </h2>
             <h3>and start getting contacted</h3>
-            <button className="min-w-fit mt-6 px-4 py-2 text-lg font-medium text-white bg-blue-500 border border-transparent rounded-md hover:bg-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500">
-              Get started
-            </button>
+            <Link href={"/api_key"}>
+              <button className="min-w-fit mt-6 px-4 py-2 text-lg font-medium text-white bg-blue-500 border border-transparent rounded-md hover:bg-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500">
+                Get started
+              </button>
+            </Link>
           </div>
         </div>
       </div>

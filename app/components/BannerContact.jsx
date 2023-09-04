@@ -1,16 +1,40 @@
 "use client";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
+import { useSession } from "next-auth/react";
+import {
+  BsFillArrowRightSquareFill,
+  BsFillArrowLeftSquareFill,
+} from "react-icons/bs";
+import { AiFillCloseCircle } from "react-icons/ai";
 
 const BannerContact = () => {
+  const { data: session } = useSession();
+  const [showTutorial, setShowTutorial] = useState(false);
+  const [emailSentSuccessfully, setEmailSentSuccessfully] = useState(false);
+  const [emailSentFailed, setEmailSentFailed] = useState(false);
+  const [tutorialIndex, setTutorialIndex] = useState(0);
+
+  useEffect(() => {
+    const getTutorialStatus = async () => {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/mongoUser/${session.user.email}`,
+        { next: { cache: "no-store" } }
+      );
+      const data = await res.json();
+      setShowTutorial(data[0].tutorialCompleted === true ? false : true);
+    };
+    if (session) {
+      getTutorialStatus();
+    }
+  }, [session]);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const [emailSentSuccessfully, setEmailSentSuccessfully] = useState(false);
-  const [emailSentFailed, setEmailSentFailed] = useState(false);
 
   const onSubmit = async (data, e) => {
     e.target.reset();
@@ -36,7 +60,57 @@ const BannerContact = () => {
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="mt-20 mb-8 md:mb-0 md:mt-0 md:h-[100vh] w-full min-w-fit flex flex-col items-center justify-center">
+        <div className="mt-20 mb-8 md:mb-0 md:mt-0 md:h-[100vh] w-full min-w-fit flex flex-col items-center justify-center relative">
+          {showTutorial && tutorialIndex === 0 ? (
+            <div className="absolute top-[12%] z-50 bg-altGray py-4 mb-2 rounded-md border-black border-2 shadow-2xl w-1/3">
+              <div className="flex w-full justify-end text-lg">
+                <p className="mb-2 px-4">
+                  <AiFillCloseCircle />
+                </p>
+              </div>
+              <h1 className="text-3xl mb-3 text-center">Try it out!</h1>
+              <div className="flex flex-row w-full text-lg justify-center gap-x-2 px-4">
+                <button
+                  disabled={true}
+                  className="text-slate-400"
+                  onClick={(prev) => setTutorialIndex(prev - 1)}
+                >
+                  <BsFillArrowLeftSquareFill />
+                </button>
+                <button
+                  className=""
+                  onClick={(prev) => setTutorialIndex(prev + 1)}
+                >
+                  <BsFillArrowRightSquareFill />
+                </button>
+              </div>
+            </div>
+          ) : null}
+          {showTutorial && tutorialIndex === 1 ? (
+            <div className="absolute top-[12%] z-50 bg-altGray py-4 mb-2 rounded-md border-black border-2 shadow-2xl w-1/3">
+              <div className="flex w-full justify-end text-lg">
+                <p className="mb-2 px-4">
+                  <AiFillCloseCircle />
+                </p>
+              </div>
+              <h1 className="text-3xl mb-3 text-center">Your Email Here</h1>
+              <p>You will not have to manually put this in anywhere else</p>
+              <div className="flex flex-row w-full text-lg justify-center gap-x-2 px-4">
+                <button
+                  className=""
+                  onClick={(prev) => setTutorialIndex(prev - 1)}
+                >
+                  <BsFillArrowLeftSquareFill />
+                </button>
+                <button
+                  className=""
+                  onClick={(prev) => setTutorialIndex(prev + 1)}
+                >
+                  <BsFillArrowRightSquareFill />
+                </button>
+              </div>
+            </div>
+          ) : null}
           <div className="w-[90%] bg-offset py-10 flex flex-wrap justify-center relative">
             {emailSentSuccessfully && (
               <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center">
@@ -87,10 +161,10 @@ const BannerContact = () => {
             </h1>
             <div className="w-[90%] bg-contrast py-6 px-6 mt-12 shadow-2xl overflow-hidden ">
               <div className="flex flex-col gap-y-8">
-                <div>
+                <div className="">
                   <input
                     type="text"
-                    className="bg-contrast border-2 border-gray-400 px-4 py-1 "
+                    className={`bg-contrast disabled:opacity-75 w-full xl:w-auto border-2 border-gray-400 px-4 py-1`}
                     placeholder="Reciever email"
                     {...register("recieverEmail", { required: true })}
                   />
@@ -98,6 +172,7 @@ const BannerContact = () => {
                     <span className="invalid-feedback">Name is required</span>
                   )}
                 </div>
+                {/* <span className="flex flex-col w-[213px] xl:w-full gap-y-8 gap-x-8 xl:flex-row"> */}
                 <span className="flex flex-col gap-y-8 gap-x-8 xl:flex-row">
                   <input
                     className="bg-contrast border-2 border-gray-400 px-4 py-1 "
@@ -114,7 +189,7 @@ const BannerContact = () => {
                 </span>
                 <div>
                   <input
-                    className="bg-contrast border-2 border-gray-400 px-4 py-1 "
+                    className="bg-contrast w-full xl:w-auto border-2 border-gray-400 px-4 py-1 "
                     type="text"
                     placeholder="Subject"
                     {...register("subject", { required: true })}

@@ -17,6 +17,10 @@ const userSchema = new Schema({
     image: {
         type: String,
     },
+    tutorialCompleted: {
+      type: Boolean,
+      default: false,
+    }
 });
 
 
