@@ -5,7 +5,10 @@ const ReqCodeBlock = ({ tabSelected, tabs }) => {
   const frameworks = [
     {
       name: "Next.js with axios and react-hook-form",
-      codeblocks: [{name: "ContactForm.jsx", code:`"use client";
+      codeblocks: [
+        {
+          name: "ContactForm.jsx",
+          code: `"use client";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 
@@ -61,221 +64,218 @@ const ContactForm = () => {
 };
 
 export default ContactForm;
-    `},
+    `,
+        },
       ],
     },
     {
       name: "React",
-      code: `import React, { useState } from 'react';
+      codeblocks: [
+        {
+          name: "ContactForm.jsx",
+          code: `import React, { useState } from 'react';
 
-      function ContactForm() {
-        const [formData, setFormData] = useState({
-          recieverEmail: '',
-          senderName: '',
-          senderEmail: '',
-          subject: '',
-          comment: '',
+function ContactForm() {
+    const [formData, setFormData] = useState({
+      senderName: '',
+      senderEmail: '',
+      subject: '',
+      comment: '',
+    });
+
+    const handleChange = (e) => {
+      const { name, value } = e.target;
+      setFormData({ ...formData, [name]: value });
+    };
+
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+
+      const API_KEY = process.env.REACT_APP_EMAIL_API_KEY; // Replace with your API key
+
+      const dataToSend = {
+        ...formData,
+        API_KEY,
+        recieverEmail: 'Your Email Address', // Replace with your email address
+      };
+
+      try {
+        const response = await fetch('https://portfolio-email-service.azurewebsites.net/submit-form', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(dataToSend),
         });
-      
-        const handleChange = (e) => {
-          const { name, value } = e.target;
-          setFormData({ ...formData, [name]: value });
-        };
-      
-        const handleSubmit = async (e) => {
-          e.preventDefault();
-      
-          const API_KEY = process.env.NEXT_PUBLIC_EMAIL_API_KEY; // Replace with your API key
-      
-          const dataToSend = {
-            ...formData,
-            API_KEY,
-          };
-      
-          try {
-            const response = await fetch('https://portfolio-email-service.azurewebsites.net/submit-form', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify(dataToSend),
-            });
-      
-            if (response.ok) {
-              console.log('Form submitted successfully:', response);
-              // Clear the form
-              setFormData({
-                recieverEmail: '',
-                senderName: '',
-                senderEmail: '',
-                subject: '',
-                comment: '',
-              });
-            } else {
-              console.error('Error submitting form:', response);
-            }
-          } catch (error) {
-            console.error('Error submitting form:', error);
-          }
-        };
-      
-        return (
-          <div>
-            <form onSubmit={handleSubmit}>
-              <div>
-                <input
-                  type="text"
-                  name="recieverEmail"
-                  placeholder="Receiver email"
-                  value={formData.recieverEmail}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div>
-                <input
-                  type="text"
-                  name="senderName"
-                  placeholder="Name"
-                  value={formData.senderName}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div>
-                <input
-                  type="text"
-                  name="senderEmail"
-                  placeholder="Sender email"
-                  value={formData.senderEmail}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div>
-                <input
-                  type="text"
-                  name="subject"
-                  placeholder="Subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div>
-                <input
-                  type="text"
-                  name="comment"
-                  placeholder="Message"
-                  value={formData.comment}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div>
-                <button type="submit">Send your message</button>
-              </div>
-            </form>
-          </div>
-        );
+
+        if (response.ok) {
+          console.log('Form submitted successfully:', response);
+          setFormData({
+            senderName: '',
+            senderEmail: '',
+            subject: '',
+            comment: '',
+          });
+        } else {
+          console.error('Error submitting form:', response);
+        }
+      } catch (error) {
+        console.error('Error submitting form:', error);
       }
-      
-      export default ContactForm;
-      
-      `,
+    };
+
+    return (
+      <div>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <input
+              type="text"
+              name="senderName"
+              placeholder="Name"
+              value={formData.senderName}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              name="senderEmail"
+              placeholder="Sender email"
+              value={formData.senderEmail}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              name="subject"
+              placeholder="Subject"
+              value={formData.subject}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              name="comment"
+              placeholder="Message"
+              value={formData.comment}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div>
+            <button type="submit">Send your message</button>
+          </div>
+        </form>
+      </div>
+    );
+    }
+
+    export default ContactForm;
+
+    `,
+        },
+      ],
     },
     {
       name: "Vue",
-      code: `<template>
-  <div>
-    <form @submit.prevent="submitForm">
+      codeblocks: [{name: "ContactForm.vue", code:`<template>
       <div>
-        <input
-          type="text"
-          placeholder="Receiver email"
-          v-model="formData.recieverEmail"
-          required
-        />
+        <form @submit.prevent="submitForm">
+          <div>
+            <input
+              type="text"
+              placeholder="Name"
+              v-model="formData.senderName"
+              required
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              placeholder="Sender email"
+              v-model="formData.senderEmail"
+              required
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              placeholder="Subject"
+              v-model="formData.subject"
+              required
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              placeholder="Message"
+              v-model="formData.comment"
+              required
+            />
+          </div>
+          <div>
+            <button type="submit">Send your message</button>
+          </div>
+        </form>
       </div>
-      <div>
-        <input
-          type="text"
-          placeholder="Name"
-          v-model="formData.senderName"
-          required
-        />
-      </div>
-      <div>
-        <input
-          type="text"
-          placeholder="Sender email"
-          v-model="formData.senderEmail"
-          required
-        />
-      </div>
-      <div>
-        <input
-          type="text"
-          placeholder="Subject"
-          v-model="formData.subject"
-          required
-        />
-      </div>
-      <div>
-        <input
-          type="text"
-          placeholder="Message"
-          v-model="formData.comment"
-          required
-        />
-      </div>
-      <div>
-        <button type="submit">Send your message</button>
-      </div>
-    </form>
-  </div>
-</template>
-
-<script>
-export default {
-  data() {
-    return {
-      formData: {
-        recieverEmail: "",
-        senderName: "",
-        senderEmail: "",
-        subject: "",
-        comment: "",
+    </template>
+    
+    <script>
+    export default {
+      data() {
+        return {
+          formData: {
+            API_KEY: process.env.VUE_APP_EMAIL_API_KEY,  // Replace with your API key
+            recieverEmail: "Your Email Here",  // Replace with your email address
+            senderName: "",
+            senderEmail: "",
+            subject: "",
+            comment: "",
+          },
+        };
+      },
+      methods: {
+        async submitForm() {
+          try {
+            await fetch(
+            "https://portfolio-email-service.azurewebsites.net/submit-form",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(this.formData),
+            }
+          )
+            this.formData = {
+              API_KEY: process.env.VUE_APP_EMAIL_API_KEY,  // Replace with your API key
+              recieverEmail: "Your Email Here",  // Replace with your email address
+              senderName: "",
+              senderEmail: "",
+              subject: "",
+              comment: "",
+            };
+          } catch (error) {
+            console.error("Error submitting form:", error);
+          }
+        },
       },
     };
-  },
-  methods: {
-    async submitForm() {
-      this.formData.API_KEY = process.env.NEXT_PUBLIC_EMAIL_API_KEY;
-      try {
-        const response = await this.$http.post(
-          "https://portfolio-email-service.azurewebsites.net/submit-form",
-          this.formData
-        );
-        this.formData = {
-          recieverEmail: "",
-          senderName: "",
-          senderEmail: "",
-          subject: "",
-          comment: "",
-        };
-      } catch (error) {
-        console.error("Error submitting form:", error);
-      }
-    },
-  },
-};
-</script>
-      `,
+    </script>
+      `},
+],
     },
     {
       name: "Javascript",
-      codeblocks: [{name: "index.html", code: `<!DOCTYPE html>
+      codeblocks: [
+        {
+          name: "index.html",
+          code: `<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -310,8 +310,11 @@ export default {
     <script src="app.js"></script>
   </body>
 </html>
-      `},
-      {name: "app.js", code: `document.addEventListener("DOMContentLoaded", function () {
+      `,
+        },
+        {
+          name: "app.js",
+          code: `document.addEventListener("DOMContentLoaded", function () {
         const contactForm = document.getElementById("contactForm");
         const senderNameInput = document.getElementById("senderName");
         const senderEmailInput = document.getElementById("senderEmail");
@@ -346,9 +349,10 @@ export default {
         });
       });
       
-    `
-      }],
-    }
+    `,
+        },
+      ],
+    },
   ];
 
   const themes = "dracula";
