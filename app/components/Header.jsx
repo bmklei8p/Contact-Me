@@ -9,6 +9,7 @@ import { RiMenuFill } from "react-icons/ri";
 import { HiDocumentText } from "react-icons/hi";
 import { MdVpnKey } from "react-icons/md";
 import React from "react";
+import Image from "next/image";
 
 const Header = () => {
   const { theme, setTheme } = useTheme();
