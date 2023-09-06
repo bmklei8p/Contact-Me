@@ -134,16 +134,16 @@ const BannerContact = () => {
             {emailSentFailed && (
               <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center">
                 <div className="bg-background p-8 rounded-md">
-                  <h1 className="text-2xl font-bold mb-4">
+                  <h1 className="text-2xl font-bold mb-4 text-center">
                     Email sending failed
                   </h1>
-                  <p className="text-lg">
+                  <p className="text-lg text-center">
                     Please try again. If you continue to see this message,
                     please contact me via linkedin.
                   </p>
                   <button
                     className="px-4 py-2 mt-4 text-lg font-medium text-white bg-blue-500 border border-transparent rounded-md hover:bg-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
-                    onClick={() => setEmailSentSuccessfully(false)}
+                    onClick={() => emailSentFailed(false)}
                   >
                     Close
                   </button>
