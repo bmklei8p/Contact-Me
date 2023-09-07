@@ -57,7 +57,7 @@ const CallToAction = () => {
 
       <div className="w-full px-4 md:px-0 flex-col mt-8 md:mt-12 relative  hidden 2xl:flex">
         <div className="w-full flex flex-col lg:flex-row lg:gap-x-8 justify-center xl:justify-center">
-          <div className="flex flex-col text-left w-[70%]">
+          <div className="flex flex-col text-center w-[70%]">
             <h3 className="text-3xl md:text-3xl italic font-bold">
               Fastest and simplest
             </h3>
