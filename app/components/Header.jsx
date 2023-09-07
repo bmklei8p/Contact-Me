@@ -8,6 +8,7 @@ import { MdEmail } from "react-icons/md";
 import { RiMenuFill } from "react-icons/ri";
 import { HiDocumentText } from "react-icons/hi";
 import { MdVpnKey } from "react-icons/md";
+import { FcGoogle } from "react-icons/fc";
 import React from "react";
 import Image from "next/image";
 
@@ -34,6 +35,7 @@ const Header = () => {
   useEffect(() => {
     (async () => {
       const res = await getProviders();
+      console.log(res)
       setProviders(res);
     })();
   }, []);
@@ -95,9 +97,10 @@ const Header = () => {
                       type="button"
                       key={provider.name}
                       onClick={() => signIn(provider.id)}
-                      className="min-w-fit px-4 py-2 text-lg font-medium text-white bg-blue-500 border border-transparent rounded-md hover:bg-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+                      className="flex flex-row gap-x-3 min-w-fit px-4 py-2 text-lg font-medium text-black bg-white border border-transparent rounded-md hover:bg-blue-500 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
                     >
-                      <p>Sign In</p>
+                      <FcGoogle size={25} />
+                      <p>Sign in with {provider.name}</p>
                     </button>
                   ))}
               </>

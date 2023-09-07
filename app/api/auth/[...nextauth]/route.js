@@ -19,11 +19,7 @@ const handler = NextAuth({
         return session;
     },
     async signIn({ profile }) {
-            // serverless but that means it has to spin up connection to db each time
-            // you hit it
-            // check if user already exits
             const userExists = await User.findOne({ email: profile.email })
-            // if not, create a new user
             if (!userExists) {
                 await User.create({
                     email: profile.email,
