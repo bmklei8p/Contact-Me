@@ -62,14 +62,14 @@ const BannerContact = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="mt-20 mb-8 md:mb-0 md:mt-0 md:h-[100vh] w-full min-w-fit flex flex-col items-center justify-center relative">
           {showTutorial && tutorialIndex === 0 ? (
-            <div className="absolute top-[12%] z-50 bg-altGray py-4 mb-2 rounded-md border-black border-2 shadow-2xl w-1/3">
-              <div className="flex w-full justify-end text-lg">
+            <div className="absolute top-[12%] z-50 bg-altGray py-2 rounded-md border-black border-2 shadow-2xl w-1/3">
+              <div className="flex justify-end text-lg">
                 <p className="mb-2 px-4">
-                  <AiFillCloseCircle />
+                  <AiFillCloseCircle onClick={() => setShowTutorial(false)} />
                 </p>
               </div>
               <h1 className="text-3xl mb-3 text-center">Try it out!</h1>
-              <div className="flex flex-row w-full text-lg justify-center gap-x-2 px-4">
+              {/* <div className="flex flex-row w-full text-lg justify-center gap-x-2 px-4">
                 <button
                   disabled={true}
                   className="text-slate-400"
@@ -83,10 +83,10 @@ const BannerContact = () => {
                 >
                   <BsFillArrowRightSquareFill />
                 </button>
-              </div>
+              </div> */}
             </div>
           ) : null}
-          {showTutorial && tutorialIndex === 1 ? (
+          {/* {showTutorial && tutorialIndex === 1 ? (
             <div className="absolute top-[12%] z-50 bg-altGray py-4 mb-2 rounded-md border-black border-2 shadow-2xl w-1/3">
               <div className="flex w-full justify-end text-lg">
                 <p className="mb-2 px-4">
@@ -110,7 +110,7 @@ const BannerContact = () => {
                 </button>
               </div>
             </div>
-          ) : null}
+          ) : null} */}
           <div className="w-[90%] bg-offset py-10 flex flex-wrap justify-center relative">
             {emailSentSuccessfully && (
               <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center">
