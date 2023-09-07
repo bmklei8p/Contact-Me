@@ -42,7 +42,7 @@ const API_KEY_PAGE = () => {
             API Key
           </h1>
           {session?.user ? (
-            true ? (
+            apiKey ? (
               <>
                 <GenerateAPI_KEY email={session.user.email} />
                 <DisplayAPI_KEY API_KEY={apiKey} />

@@ -143,7 +143,7 @@ const BannerContact = () => {
                   </p>
                   <button
                     className="px-4 py-2 mt-4 text-lg font-medium text-white bg-blue-500 border border-transparent rounded-md hover:bg-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
-                    onClick={() => emailSentFailed(false)}
+                    onClick={() => setEmailSentFailed(false)}
                   >
                     Close
                   </button>

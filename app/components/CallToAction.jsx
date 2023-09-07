@@ -27,7 +27,7 @@ const CallToAction = () => {
           </div>
         </div>
         <div className="flex justify-center">
-          <Image src={email} width={650} height={650} className="" />
+          <Image src={email} width={650} height={650} className="" alt="email splash image for visual effect only" />
         </div>
         <div className="w-full flex justify-center">
           <div className="text-3xl flex flex-col text-center">
@@ -70,7 +70,7 @@ const CallToAction = () => {
         <div className="w-full flex justify-center">
           <div className="text-3xl flex flex-row text-center">
           <div className="flex justify-start">
-          <Image src={email} width={650} height={650} className="" />
+          <Image src={email} width={650} height={650} className="" alt="email splash image for visual effect only" />
         </div>
             <div className="flex flex-col text-center justify-center">
               <h3>
