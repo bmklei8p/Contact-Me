@@ -54,7 +54,7 @@ const API_KEY_PAGE = () => {
                       with anyone.
                     </li>
                     <li className="text-lg">
-                      Your API Key is used to authenticate your requests to the
+                      Your API Key is used to authenticate requests to the
                       API.
                     </li>
                   </ul>
