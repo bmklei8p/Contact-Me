@@ -8,6 +8,7 @@ import {
   BsFillArrowLeftSquareFill,
 } from "react-icons/bs";
 import { AiFillCloseCircle } from "react-icons/ai";
+import { set } from "mongoose";
 
 const BannerContact = () => {
   const { data: session } = useSession();
@@ -56,6 +57,18 @@ const BannerContact = () => {
       setEmailSentFailed(true);
     }
   };
+  const handleTutorialClose = async () => {
+    setShowTutorial(false);
+    try {
+      const response = await fetch(`/api/mongoUser/${session.user.email}`, {
+        method: "PATCH",
+      })
+      const data = await response.json();
+      console.log({"User Updated": data})
+    } catch (err) {
+      console.log({"first time tutorial error": err})
+    }
+  }
 
   return (
     <>
@@ -65,7 +78,7 @@ const BannerContact = () => {
             <div className="absolute top-[12%] z-50 bg-altGray py-2 rounded-md border-black border-2 shadow-2xl w-1/3">
               <div className="flex justify-end text-lg">
                 <p className="mb-2 px-4">
-                  <AiFillCloseCircle onClick={() => setShowTutorial(false)} />
+                  <AiFillCloseCircle onClick={() => handleTutorialClose()} />
                 </p>
               </div>
               <h1 className="text-3xl mb-3 text-center">Try it out!</h1>
