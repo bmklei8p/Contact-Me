@@ -8,7 +8,6 @@ import {
   BsFillArrowLeftSquareFill,
 } from "react-icons/bs";
 import { AiFillCloseCircle } from "react-icons/ai";
-import { set } from "mongoose";
 
 const BannerContact = () => {
   const { data: session } = useSession();
