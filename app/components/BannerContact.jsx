@@ -59,7 +59,7 @@ const BannerContact = () => {
   const handleTutorialClose = async () => {
     setShowTutorial(false);
     try {
-      const response = await fetch(`/api/mongoUser/${session.user.email}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/mongoUser/${session.user.email}`, {
         method: "PATCH",
       })
       const data = await response.json();
