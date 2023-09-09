@@ -10,7 +10,7 @@ export const GET = async (req, {params}) => {
 
 export const PATCH = async (req, {params, body}) => {
     connectToDB();
-    const user = await User.find({email: params.email});
+    const user = await User.findOne({email: params.email});
     user.tutorialCompleted = true;
     await user.save();
     return new Response(JSON.stringify(user), {status: 200})
