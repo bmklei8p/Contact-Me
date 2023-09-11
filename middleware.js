@@ -3,8 +3,8 @@ import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
  
 const redis = new Redis({
-  url: process.env.UPSTASH_URL,
-  token: process.env.UPSTASH_TOKEN,
+  url: process.env.UPSTASH_REDIS_REST_URL,
+  token: process.env.UPSTASH_REDIS_REST_TOKEN,
 });
  
 const ratelimit = new Ratelimit({
@@ -13,11 +13,9 @@ const ratelimit = new Ratelimit({
 });
  
 export default async function middleware(request, event) {
-  console.log(request)
-  // const ip = request.ip ?? "127.0.0.1";
-  const user = request.user ?? "";
+  const ip = request.ip ?? "127.0.0.1";
   const { success, pending, limit, reset, remaining } = await ratelimit.limit(
-    user
+    ip
   );
   return success
     ? NextResponse.next()
