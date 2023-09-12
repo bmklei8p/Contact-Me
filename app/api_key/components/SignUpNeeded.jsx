@@ -16,11 +16,11 @@ const SignUpNeeded = () => {
 
   return (
     <>
-    <h2 className="text-3xl mt-16 mb-8">
+    <h2 className="text-3xl mt-16 mb-8 text-center">
       An API Key is required to use this product.
     </h2>
     <Image priority={true} src={Vault} alt="vault" width={200} height={200} />
-    <h3 className="text-2xl mt-8 mb-8">
+    <h3 className="text-3xl mt-8 mb-8 text-center">
       Please sign in or sign up to continue
     </h3>
     {providers &&

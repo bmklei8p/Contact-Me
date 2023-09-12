@@ -230,8 +230,10 @@ function ContactForm() {
       data() {
         return {
           formData: {
-            API_KEY: process.env.VUE_APP_EMAIL_API_KEY,  // Replace with your API key
-            recieverEmail: "Your Email Here",  // Replace with your email address
+            API_KEY: process.env.VUE_APP_EMAIL_API_KEY,  
+            // Replace with your API key
+            recieverEmail: "Your Email Here",  
+            // Replace with your email address
             senderName: "",
             senderEmail: "",
             subject: "",
@@ -253,8 +255,10 @@ function ContactForm() {
             }
           )
             this.formData = {
-              API_KEY: process.env.VUE_APP_EMAIL_API_KEY,  // Replace with your API key
-              recieverEmail: "Your Email Here",  // Replace with your email address
+              API_KEY: process.env.VUE_APP_EMAIL_API_KEY,  
+              // Replace with your API key
+              recieverEmail: "Your Email Here",  
+              // Replace with your email address
               senderName: "",
               senderEmail: "",
               subject: "",
@@ -429,8 +433,8 @@ export class ContactFormComponent {
   const wrapLongLines = false;
   const codeBlock = true;
   return (
-    <div className="w-full px-4">
-      <h1 className="text-4xl mt-8 font-bold mb-2">
+    <div className="w-full md:w-[70%] lg:w-full flex flex-col  px-4">
+      <h1 className="text-4xl mt-12 font-bold text-left">
         {frameworks[tabSelected].name}
       </h1>
       {frameworks[tabSelected].codeblocks.map((codeblock, i) => {

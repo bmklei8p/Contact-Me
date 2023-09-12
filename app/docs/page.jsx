@@ -32,7 +32,7 @@ const Docs = () => {
   return (
     <div className="w-full flex flex-col lg:flex-row">
       <div className="basis-1/2 flex justify-center">
-        <div className="w-full md:w-[70%] px-6 md:px-0 flex flex-col">
+        <div className="w-full md:w-[70%] lg:w-[95%] max-w-3xl  px-6 md:px-0 flex flex-col">
           <h1 className="text-5xl pt-10 md:pt-20 font-bold pb-5 border-b-2 border-gray-400 w-full text-center">
             Getting Started
           </h1>
@@ -40,9 +40,9 @@ const Docs = () => {
             {tabs.map((tab, i) => {
               return (
                 <button
-                  className={`border-r-2 border-white pr-2 md:pr-4
-                ${tabSelected === i ? "text-blue-500" : ""}
-                ${i === tabs.length - 1 ? "border-r-0" : ""}
+                  className={`border-white pr-2 md:pr-4
+                ${tabSelected === i ? "text-blue-500 font-bold" : ""}
+                ${i === tabs.length - 1 ? "border-r-0" : "border-r-2"}
                 `}
                   key={i}
                   onClick={() => setTabSelected(i)}
@@ -58,7 +58,7 @@ const Docs = () => {
           </div>
         </div>
       </div>
-      <div className="basis-1/2">
+      <div className="basis-1/2 flex justify-center">
         <ReqCodeBlock tabSelected={tabSelected} tabs={tabs} />
       </div>
     </div>

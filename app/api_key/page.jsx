@@ -27,8 +27,9 @@ const API_KEY_PAGE = () => {
 
   return (
     <div className="w-full h-5/6 overflow-hidden flex flex-col-reverse  md:flex-row-reverse">
-      <div className="w-full pt-14 md:pt-0">
+      <div className="w-full pt-14 md:pt-0 flex items-center">
         <Image
+          priority={true}
           src={stockKey}
           alt="key"
           width={1000}
